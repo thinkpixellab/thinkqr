@@ -5,18 +5,40 @@
   <script src="js/deps.js"></script>
   <script>
   goog.require('goog.testing.jsunit');
-  goog.require('Application');
+  goog.require('QRCode');
 
   function testApplication(){
+    var qr = new QRCode(10, 3);
+    qr.addData('kevin');
+    qr.make();
+
+    var mod = qr.modules;
+    console.debug(mod);
+
+
     var canvas = $('#appCanvas')[0];
-    var app = new Application(canvas);
+    var context = canvas.getContext('2d');
+    context.fillStyle = 'white';
+
+    context.clearRect(0,0,210,210);
+
+    context.fillStyle = 'black';
+
+    for(var row = 0; row < mod.length; row++){
+      for(var col = 0; col < mod.length; col++){
+        if(mod[row][col]){
+          context.fillRect(col * 10, row * 10, 10, 10);
+        }
+      }
+    }
+
   }
 
   </script>
 </head>
-<body style='margin: 0;'>
-  <div style='float: right; background: #30302F;'>
-    <canvas id="appCanvas" width='640' height='480'></canvas>
+<body>
+  <div style='float: right;'>
+    <canvas id="appCanvas" width='800' height='800' style='margin: 20px;'></canvas>
   </div>
 </body>
 </html>
