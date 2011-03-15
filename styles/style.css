@@ -87,9 +87,6 @@ body#app {
 
 #container {
   margin: 10px auto;
-  background: #666;
-  width: 640px;
-  height: 480px;
 }
 
 #appCanvas {

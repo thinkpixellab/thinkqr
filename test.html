@@ -5,35 +5,12 @@
   <script src="js/deps.js"></script>
   <script>
   goog.require('goog.testing.jsunit');
-  goog.require('QRCode');
-
-  var scale = 5;
 
   function testApplication(){
-    var qr = new QRCode(10, 3);
-    qr.addData('kevin');
-    qr.make();
-
-    var mod = qr.modules;
-
-    var canvas = $('#appCanvas').attr('width', mod.length * scale).attr('height', mod.length * scale)[0];
-    var context = canvas.getContext('2d');
-    context.fillStyle = 'black';
-
-    for(var row = 0; row < mod.length; row++){
-      for(var col = 0; col < mod.length; col++){
-        if(mod[row][col]){
-          context.fillRect(col * scale, row * scale, scale, scale);
-        }
-      }
-    }
   }
 
   </script>
 </head>
 <body>
-  <div style='float: right;'>
-    <canvas id="appCanvas" style='margin: 20px;'></canvas>
-  </div>
 </body>
 </html>
