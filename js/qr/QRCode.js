@@ -23,9 +23,7 @@ QRCode = function(typeNumber, errorCorrectLevel) {
   }
 
   this.dataCache = null;
-  this.dataList = {
-    length: 0
-  };
+  this.dataList = [];
 };
 
 QRCode.prototype = {
@@ -35,7 +33,7 @@ QRCode.prototype = {
    */
   addData: function(data) {
     var newData = new QR8bitByte(data);
-    this.dataList[this.dataList.length++] = newData;
+    this.dataList.push(newData);
     this.dataCache = null;
   },
 
