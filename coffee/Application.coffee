@@ -14,10 +14,11 @@ class Application
     $(input)
       .width(this.size * this.scale - 2)
       .val('Hello, world!')
+      .bind 'keyup', goog.bind(this._create, this)
 
-    this._create $(input).val()
+    this._create()
 
-  _create: (data) ->
+  _create: () ->
     qr = new QRCode(10, 3)
     value = $(this.input).val()
     qr.addData(value)
@@ -25,7 +26,8 @@ class Application
 
     mod = qr.modules
 
-    this.canvas = $(this.canvas).attr('width', mod.length * this.scale).attr('height', mod.length * this.scale)[0]
+    dim = this.size * this.scale
+    this.canvas = $(this.canvas).attr('width', dim).attr('height', dim)[0]
     context = this.canvas.getContext('2d')
     context.fillStyle = 'black'
 

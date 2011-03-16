@@ -12,17 +12,18 @@ Application = (function() {
     this.typeNumber = 10;
     this.size = this.typeNumber * 4 + 17;
     this.scale = 5;
-    $(input).width(this.size * this.scale - 2).val('Hello, world!');
-    this._create($(input).val());
+    $(input).width(this.size * this.scale - 2).val('Hello, world!').bind('keyup', goog.bind(this._create, this));
+    this._create();
   }
-  Application.prototype._create = function(data) {
-    var col, context, mod, qr, row, value, x, y, _len, _len2;
+  Application.prototype._create = function() {
+    var col, context, dim, mod, qr, row, value, x, y, _len, _len2;
     qr = new QRCode(10, 3);
     value = $(this.input).val();
     qr.addData(value);
     qr.make();
     mod = qr.modules;
-    this.canvas = $(this.canvas).attr('width', mod.length * this.scale).attr('height', mod.length * this.scale)[0];
+    dim = this.size * this.scale;
+    this.canvas = $(this.canvas).attr('width', dim).attr('height', dim)[0];
     context = this.canvas.getContext('2d');
     context.fillStyle = 'black';
     for (y = 0, _len = mod.length; y < _len; y++) {

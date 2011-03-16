@@ -11,13 +11,15 @@
     
     $(document).ready(function(){
       var canvas = $('#appCanvas')[0];
-      var app = new Application(canvas);
+      var input = $('#input')[0];
+      var app = new Application(canvas, input);
     });
   </script>
 </head>
 <body id='app'>
   <div id="container">
     <canvas id="appCanvas" width='640' height='480'></canvas>
+    <input type='text' id='input' style='display: block; margin: 0 auto; border: 1px solid; margin-top: 5px;'></input>
   </div>
 </body>
 </html>
