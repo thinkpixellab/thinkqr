@@ -1,6 +1,7 @@
 goog.provide('Application')
 
 goog.require 'QRCode'
+goog.require 'QRErrorCorrectLevel'
 
 ###
 @ constructor
@@ -19,7 +20,7 @@ class Application
     this._create()
 
   _create: () ->
-    qr = new QRCode(10, 3)
+    qr = new QRCode(this.typeNumber, QRErrorCorrectLevel.Q)
     value = $(this.input).val()
     qr.addData(value)
     qr.make()

@@ -1,6 +1,7 @@
 var Application;
 goog.provide('Application');
 goog.require('QRCode');
+goog.require('QRErrorCorrectLevel');
 /*
 @ constructor
 @ param {!HTMLCanvasElement} canvas
@@ -17,7 +18,7 @@ Application = (function() {
   }
   Application.prototype._create = function() {
     var col, context, dim, mod, qr, row, value, x, y, _len, _len2;
-    qr = new QRCode(10, 3);
+    qr = new QRCode(this.typeNumber, QRErrorCorrectLevel.Q);
     value = $(this.input).val();
     qr.addData(value);
     qr.make();
