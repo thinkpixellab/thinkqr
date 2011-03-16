@@ -13,28 +13,35 @@ Application = (function() {
     this.typeNumber = 10;
     this.size = this.typeNumber * 4 + 17;
     this.scale = 5;
-    $(input).width(this.size * this.scale - 2).val('Hello, world!').bind('keyup', goog.bind(this._create, this));
+    this._dim = this.size * this.scale;
+    $(input).width(this._dim - 2).val('Hello, world!').bind('keyup', goog.bind(this._create, this));
+    this.canvas = $(this.canvas).attr('width', this._dim).attr('height', this._dim)[0];
+    this.context = this.canvas.getContext('2d');
     this._create();
   }
   Application.prototype._create = function() {
-    var col, context, dim, mod, qr, row, value, x, y, _len, _len2;
+    var qr, value;
     qr = new QRCode(this.typeNumber, QRErrorCorrectLevel.Q);
     value = $(this.input).val();
     qr.addData(value);
     qr.make();
-    mod = qr.modules;
-    dim = this.size * this.scale;
-    this.canvas = $(this.canvas).attr('width', dim).attr('height', dim)[0];
-    context = this.canvas.getContext('2d');
-    context.fillStyle = 'black';
-    for (y = 0, _len = mod.length; y < _len; y++) {
-      row = mod[y];
-      for (x = 0, _len2 = row.length; x < _len2; x++) {
-        col = row[x];
+    this._renderSquares(qr);
+  };
+  Application.prototype._renderSquares = function(qr) {
+    var x, y;
+    this.context.fillStyle = 'white';
+    this.context.fillRect(0, 0, this._dim, this._dim);
+    this.context.fillStyle = 'black';
+    y = 0;
+    while (y < this.size) {
+      x = 0;
+      while (x < this.size) {
         if (qr.isDark(y, x)) {
-          context.fillRect(x * this.scale, y * this.scale, this.scale, this.scale);
+          this.context.fillRect(x * this.scale, y * this.scale, this.scale, this.scale);
         }
+        x++;
       }
+      y++;
     }
   };
   return Application;
