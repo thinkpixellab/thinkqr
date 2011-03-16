@@ -6,9 +6,11 @@ goog.require('QRUtil');
 goog.require('QRRSBlock');
 goog.require('QRBitBuffer');
 
-//---------------------------------------------------------------------
-// QRCode
-//---------------------------------------------------------------------
+/**
+ * @constructor
+ * @param {number} typeNumber
+ * @param {QRErrorCorrectLevel} errorCorrectLevel
+ */
 QRCode = function(typeNumber, errorCorrectLevel) {
   this.typeNumber = typeNumber;
   this.errorCorrectLevel = errorCorrectLevel;
