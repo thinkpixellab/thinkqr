@@ -12,8 +12,16 @@ goog.require('QRBitBuffer');
 QRCode = function(typeNumber, errorCorrectLevel) {
   this.typeNumber = typeNumber;
   this.errorCorrectLevel = errorCorrectLevel;
-  this.modules = null;
-  this.moduleCount = 0;
+  this.moduleCount = this.typeNumber * 4 + 17;
+
+  this.modules = [this.moduleCount];
+  for (var row = 0; row < this.moduleCount; row++) {
+    this.modules[row] = [this.moduleCount];
+    for (var col = 0; col < this.moduleCount; col++) {
+      this.modules[row][col] = null; //(col + row) % 3;
+    }
+  }
+
   this.dataCache = null;
   this.dataList = {
     length: 0
@@ -51,18 +59,6 @@ QRCode.prototype = {
    * @param {number} maskPattern
    */
   makeImpl: function(test, maskPattern) {
-
-    this.moduleCount = this.typeNumber * 4 + 17;
-    this.modules = [this.moduleCount];
-
-    for (var row = 0; row < this.moduleCount; row++) {
-
-      this.modules[row] = [this.moduleCount];
-
-      for (var col = 0; col < this.moduleCount; col++) {
-        this.modules[row][col] = null; //(col + row) % 3;
-      }
-    }
 
     this.setupPositionProbePattern(0, 0);
     this.setupPositionProbePattern(this.moduleCount - 7, 0);

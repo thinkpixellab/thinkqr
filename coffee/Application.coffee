@@ -7,21 +7,30 @@ goog.require 'QRCode'
 @ param {!HTMLCanvasElement} canvas
 ###
 class Application
-  constructor: (@canvas) ->
+  constructor: (@canvas, @input) ->
+    this.typeNumber = 10
+    this.size = this.typeNumber * 4 + 17;
+    this.scale = 5
+    $(input)
+      .width(this.size * this.scale - 2)
+      .val('Hello, world!')
+
+    this._create $(input).val()
+
+  _create: (data) ->
     qr = new QRCode(10, 3)
-    qr.addData('kevin')
+    value = $(this.input).val()
+    qr.addData(value)
     qr.make()
-    
-    scale = 5
 
     mod = qr.modules
 
-    canvas = $(canvas).attr('width', mod.length * scale).attr('height', mod.length * scale)[0]
-    context = canvas.getContext('2d')
+    this.canvas = $(this.canvas).attr('width', mod.length * this.scale).attr('height', mod.length * this.scale)[0]
+    context = this.canvas.getContext('2d')
     context.fillStyle = 'black'
 
     for row, y in mod
       for col, x in row
-        if(col)
-          context.fillRect(x * scale, y * scale, scale, scale)
-
+        if qr.isDark(y, x)
+          context.fillRect(x * this.scale, y * this.scale, this.scale, this.scale)
+    return
