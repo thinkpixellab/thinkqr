@@ -14,6 +14,7 @@ class Application
     this.typeNumber = 10
     this.size = this.typeNumber * 4 + 17;
     this.scale = 5
+    this._initial = true
 
     this._dim = this.size * this.scale;
 
@@ -30,36 +31,46 @@ class Application
     Ticker.addListener(this)
 
   _create: () ->
-    qr = new QRCode(this.typeNumber, QRErrorCorrectLevel.Q)
     value = $(this.input).val()
-    qr.addData(value)
-    qr.make()
-    this._updateSquareTargets(qr)
+    if(this.value != value)
+      this.value = value
+      qr = new QRCode(this.typeNumber, QRErrorCorrectLevel.Q)
+      qr.addData(value)
+      qr.make()
+      this._updateSquareTargets(qr)
     return
 
   _updateSquareTargets: (qr) ->
-    count = 0
+    targets = []
     y = 0
     while y < this.size
       x = 0
       while x < this.size
         if qr.isDark(y, x)
-          count++
-          square = null
-          if(this._squares.length < count)
-            square = new Square()
-            this._squares.push(square)
-          else
-            square = this._squares[count - 1]
-
-          # Now let's set the destination
-          square.target.x = x * this.scale
-          square.target.y = y * this.scale
+          targets.push(new goog.math.Coordinate(x * this.scale, y * this.scale))
         x++
       y++
 
-    while this._squares.length > count
-      this._squares.pop()
+    while this._squares.length > targets.length
+      i = goog.math.randomInt(this._squares.length)
+      goog.array.removeAt(this._squares, i)
+    while this._squares.length < targets.length
+      if this._initial
+        x = y = (this._dim - this.scale) / 2
+      else
+        x = goog.math.randomInt(this._dim - this.scale)
+        y = goog.math.randomInt(this._dim - this.scale)
+      s = new Square(x ,y)
+      i = goog.math.randomInt(this._squares.length)
+      goog.array.insertAt this._squares, s, i
+
+    i = 0
+    while i < targets.length
+      this._squares[i].target.x = targets[i].x
+      this._squares[i].target.y = targets[i].y
+      i++
+
+    this._initial = false
 
   tick: () ->
     this.context.fillStyle = 'white'
