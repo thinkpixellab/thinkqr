@@ -17,7 +17,7 @@ Application = (function() {
     this.scale = 5;
     this._dim = (this.size + Application.PADDING * 2) * this.scale;
     $(input).width(this._dim - 2).val('Hello, world!').bind('keyup', goog.bind(this._create, this));
-    $(this.canvas).attr('width', this._dim).attr('height', this._dim).bind('mousemove', goog.bind(this._mouseMove, this).bind('mouseout', goog.bind(this._mouseOut, this)));
+    $(this.canvas).attr('width', this._dim).attr('height', this._dim).mousemove(goog.bind(this._mouseMove, this)).mouseout(goog.bind(this._mouseOut, this)).mouseleave(goog.bind(this._mouseOut, this)).mouseenter(goog.bind(this._mouseOut, this));
     this.context = this.canvas.getContext('2d');
     this.context.setTransform(1, 0, 0, 1, this.scale * Application.PADDING, this.scale * Application.PADDING);
     this._squares = [];
@@ -25,10 +25,9 @@ Application = (function() {
     Ticker.addListener(this);
   }
   Application.prototype._mouseOut = function(args) {
-    this._mouse = null;
-    return console.log(this._mouse);
+    return this._mouse = null;
   };
-  Application.prototype._mouseMove = function(fn, args) {
+  Application.prototype._mouseMove = function(args) {
     var x, y;
     x = args.offsetX - (Application.PADDING + 0.5) * this.scale;
     y = args.offsetY - (Application.PADDING + 0.5) * this.scale;
@@ -88,10 +87,6 @@ Application = (function() {
       s = this._squares[i];
       this._updateSquare(s);
       i++;
-    }
-    if (this._mouse) {
-      this.context.fillStyle = 'red';
-      this.context.fillRect(this._mouse.x, this._mouse.y, this.scale, this.scale);
     }
   };
   Application.prototype._updateSquare = function(s) {
