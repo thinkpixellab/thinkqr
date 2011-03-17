@@ -27,5 +27,5 @@ Square = (function() {
   };
   return Square;
 })();
-Square.DRAG = 0.1;
+Square.DRAG = 0.15;
 Square.TV = 20;

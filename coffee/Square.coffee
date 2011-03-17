@@ -21,5 +21,5 @@ class Square
     this.current.y += this.velocity.y
     return
 
-Square.DRAG = 0.1
+Square.DRAG = 0.15
 Square.TV = 20
