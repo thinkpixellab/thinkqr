@@ -22,13 +22,27 @@ class Application
       .val('Hello, world!')
       .bind 'keyup', goog.bind(this._create, this)
 
-    this.canvas = $(this.canvas).attr('width', this._dim).attr('height', this._dim)[0]
+    $(this.canvas)
+      .attr('width', this._dim)
+      .attr('height', this._dim)
+      .bind 'mousemove', goog.bind(this._mouseMove, this)
+      .bind 'mouseout', goog.bind(this._mouseOut, this)
+
     this.context = this.canvas.getContext('2d')
     this.context.setTransform(1, 0, 0, 1, this.scale * Application.PADDING, this.scale * Application.PADDING)
     this._squares = []
 
     this._create()
     Ticker.addListener(this)
+
+  _mouseOut: (args) ->
+    this._mouse = null
+    console.log this._mouse
+
+  _mouseMove: (fn, args) ->
+    x = args.offsetX - (Application.PADDING + 0.5) * this.scale
+    y = args.offsetY - (Application.PADDING + 0.5) * this.scale
+    this._mouse = new goog.math.Coordinate(x, y)    
 
   _create: () ->
     value = $(this.input).val()
@@ -81,10 +95,15 @@ class Application
       s = this._squares[i]
       this._updateSquare(s)
       i++
+
+    if this._mouse
+      this.context.fillStyle = 'red'
+      this.context.fillRect(this._mouse.x, this._mouse.y, this.scale, this.scale)
+
     return
 
   _updateSquare: (s) ->
-    s.update()
+    s.update(this._mouse)
     this.context.fillRect(s.current.x, s.current.y, this.scale, this.scale)
 
 Application.PADDING = 10

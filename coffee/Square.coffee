@@ -9,8 +9,15 @@ class Square
     this.target = new goog.math.Coordinate()
     this.velocity = new goog.math.Vec2(0, 0)
 
-  update: () ->
+  update: (mouse) ->
     force = goog.math.Vec2.difference(this.target, this.current)
+
+    if mouse
+      push = goog.math.Vec2.difference(this.current, mouse)
+      mag = push.magnitude()
+      mag = 1000 / mag
+      push.normalize().scale(mag)
+      force.add push
 
     this.velocity.scale(1 - Square.DRAG)
     this.velocity.add(force.scale(1 / Square.INERTIA))
