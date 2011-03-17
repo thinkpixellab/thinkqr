@@ -8,6 +8,7 @@ class Square
     this.current = new goog.math.Coordinate(x, y)
     this.target = new goog.math.Coordinate()
     this.velocity = new goog.math.Vec2(0, 0)
+    this._rnd = Math.random() * 0.5
 
   update: (mouse) ->
     force = goog.math.Vec2.difference(this.target, this.current)
@@ -20,7 +21,7 @@ class Square
       force.add push
 
     this.velocity.scale(1 - Square.DRAG)
-    this.velocity.add(force.scale(1 / Square.INERTIA))
+    this.velocity.add(force.scale((1 + this._rnd) / Square.INERTIA))
     if(this.velocity.magnitude() > Square.TV)
       this.velocity.normalize().scale(Square.TV)
 
