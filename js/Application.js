@@ -15,11 +15,11 @@ Application = (function() {
     this.typeNumber = 10;
     this.size = this.typeNumber * 4 + 17;
     this.scale = 5;
-    this._initial = true;
-    this._dim = this.size * this.scale;
+    this._dim = (this.size + Application.PADDING * 2) * this.scale;
     $(input).width(this._dim - 2).val('Hello, world!').bind('keyup', goog.bind(this._create, this));
     this.canvas = $(this.canvas).attr('width', this._dim).attr('height', this._dim)[0];
     this.context = this.canvas.getContext('2d');
+    this.context.setTransform(1, 0, 0, 1, this.scale * Application.PADDING, this.scale * Application.PADDING);
     this._squares = [];
     this._create();
     Ticker.addListener(this);
@@ -54,12 +54,7 @@ Application = (function() {
       goog.array.removeAt(this._squares, i);
     }
     while (this._squares.length < targets.length) {
-      if (this._initial) {
-        x = y = (this._dim - this.scale) / 2;
-      } else {
-        x = goog.math.randomInt(this._dim - this.scale);
-        y = goog.math.randomInt(this._dim - this.scale);
-      }
+      x = y = (this.size - 1) * this.scale / 2;
       s = new Square(x, y);
       i = goog.math.randomInt(this._squares.length);
       goog.array.insertAt(this._squares, s, i);
@@ -76,7 +71,7 @@ Application = (function() {
   Application.prototype.tick = function() {
     var i, s;
     this.context.fillStyle = 'white';
-    this.context.fillRect(0, 0, this._dim, this._dim);
+    this.context.fillRect(-Application.PADDING * this.scale, -Application.PADDING * this.scale, this._dim, this._dim);
     this.context.fillStyle = 'black';
     i = 0;
     while (i < this._squares.length) {
@@ -91,3 +86,4 @@ Application = (function() {
   };
   return Application;
 })();
+Application.PADDING = 10;

@@ -18,7 +18,7 @@ Square = (function() {
     var force;
     force = goog.math.Vec2.difference(this.target, this.current);
     this.velocity.scale(1 - Square.DRAG);
-    this.velocity.add(force.scale(0.01));
+    this.velocity.add(force.scale(1 / Square.INERTIA));
     if (this.velocity.magnitude() > Square.TV) {
       this.velocity.normalize().scale(Square.TV);
     }
@@ -27,5 +27,6 @@ Square = (function() {
   };
   return Square;
 })();
-Square.DRAG = 0.15;
+Square.INERTIA = 200;
+Square.DRAG = 0.08;
 Square.TV = 20;
