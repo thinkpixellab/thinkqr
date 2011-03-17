@@ -64,6 +64,8 @@ class Application
       i = goog.math.randomInt(this._squares.length)
       goog.array.insertAt this._squares, s, i
 
+    goog.array.rotate this._squares, this.size
+
     i = 0
     while i < targets.length
       this._squares[i].target.x = targets[i].x
