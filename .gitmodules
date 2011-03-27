@@ -4,12 +4,6 @@
 [submodule "deps/easel"]
 	path = deps/easel
 	url = git://github.com/thinkpixellab/EaselJS.git
-[submodule "deps/box2d"]
-	path = deps/box2d
-	url = git://github.com/thinkpixellab/box2d.git
-[submodule "deps/paperboy"]
-	path = deps/paperboy
-	url = git://github.com/felixge/node-paperboy.git
 [submodule "tools"]
 	path = tools
 	url = git://github.com/thinkpixellab/google-closure-tools.git
