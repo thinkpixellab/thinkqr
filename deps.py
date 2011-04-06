@@ -8,7 +8,7 @@ from tools.Watcher import Watcher
 js_dir = './js'
 coffee_dir = './coffee'
 
-js_files = [js_dir]
+js_files = glob.glob(os.path.join(js_dir, '**/'))
 js_files += glob.glob('deps/easel/src/easeljs/**/')
 
 def doCoffee(diff):
