@@ -97,3 +97,6 @@ Application = (function() {
   return Application;
 })();
 Application.PADDING = 10;
+
+goog.exportSymbol('Application', Application);
+
