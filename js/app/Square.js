@@ -1,7 +1,7 @@
-var Square;
 goog.provide('Square');
 goog.require('goog.math.Vec2');
 goog.require('goog.math.Coordinate');
+
 Square = (function() {
   function Square(x, y) {
     if (x == null) {

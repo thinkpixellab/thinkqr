@@ -1,9 +1,10 @@
-var Application;
 goog.provide('Application');
+
 goog.require('QRCode');
 goog.require('QRErrorCorrectLevel');
 goog.require('Square');
 goog.require('Ticker');
+
 /*
 @ constructor
 @ param {!HTMLCanvasElement} canvas
