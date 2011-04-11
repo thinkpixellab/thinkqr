@@ -1,5 +1,8 @@
 goog.provide('QRPolynomial');
 
+/**
+ @constructor
+ */
 QRPolynomial = function(num, shift) {
 
   if (num.length == undefined) {

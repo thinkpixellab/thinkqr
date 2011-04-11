@@ -1,9 +1,11 @@
 goog.provide('Square');
 
-goog.require('goog.asserts');
 goog.require('goog.math.Vec2');
 goog.require('goog.math.Coordinate');
 
+/**
+ @constructor
+ */
 Square = function(x, y) {
   if (x == null) {
     x = 0;
@@ -18,7 +20,6 @@ Square = function(x, y) {
 };
 
 Square.prototype.update = function(mouse) {
-
   var force, mag, push;
   force = goog.math.Vec2.difference(this.target, this.current);
   if (mouse) {

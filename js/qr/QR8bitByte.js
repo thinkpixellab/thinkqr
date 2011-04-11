@@ -7,6 +7,7 @@
 goog.provide('QR8bitByte');
 
 /**
+ * @constructor
  * @param {string} data
  */
 QR8bitByte = function(data) {

@@ -1,5 +1,8 @@
 goog.provide('QRBitBuffer');
 
+/**
+ @constructor
+ */
 QRBitBuffer = function() {
   this.buffer = {
     length: 0

@@ -5,9 +5,9 @@ goog.require('QRErrorCorrectLevel');
 goog.require('Square');
 goog.require('Ticker');
 
-/*
-@ constructor
-@ param {!HTMLCanvasElement} canvas
+/**
+ @constructor
+ @param {!HTMLCanvasElement} canvas
 */
 Application = function(canvas, input) {
   this.canvas = canvas;

@@ -1,5 +1,8 @@
 goog.provide('QRRSBlock');
 
+/**
+ @constructor
+ */
 QRRSBlock = function(totalCount, dataCount) {
   this.totalCount = totalCount;
   this.dataCount = dataCount;
