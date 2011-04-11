@@ -17,9 +17,18 @@ Application = function(canvas, input) {
   this.scale = 5;
   this._dim = (this.size + Application.PADDING * 2) * this.scale;
 
-  $(input).width(this._dim - 2).val('Hi').bind('keyup', goog.bind(this._create, this));
+  $(input)
+    .width(this._dim)
+    .val('http://thinkpixellab.com')
+    .bind('keyup', goog.bind(this._create, this));
 
-  $(this.canvas).attr('width', this._dim).attr('height', this._dim).mousemove(goog.bind(this._mouseMove, this)).mouseout(goog.bind(this._mouseOut, this)).mouseleave(goog.bind(this._mouseOut, this)).mouseenter(goog.bind(this._mouseOut, this));
+  $(this.canvas)
+    .attr('width', this._dim)
+    .attr('height', this._dim)
+    .mousemove(goog.bind(this._mouseMove, this))
+    .mouseout(goog.bind(this._mouseOut, this))
+    .mouseleave(goog.bind(this._mouseOut, this))
+    .mouseenter(goog.bind(this._mouseOut, this));
 
   this.context = this.canvas.getContext('2d');
   this.context.setTransform(1, 0, 0, 1, this.scale * Application.PADDING, this.scale * Application.PADDING);
