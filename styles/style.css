@@ -83,6 +83,17 @@ a:hover { color: #036; }
  */
 
 body#app {
+  background: #D95742;
+}
+
+#input {
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+  border: none;
+  font-size: 25px;
+  text-align: center;
+  padding: 10px;
 }
 
 #container {
@@ -93,18 +104,6 @@ body#app {
   margin: 0 auto;
   display: block;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 .ir { display: block; text-indent: -999em; overflow: hidden; background-repeat: no-repeat; text-align: left; direction: ltr; }
