@@ -80,8 +80,14 @@ body#app {
   font-family: 'Ubuntu', arial, serif;
 }
 
+#container {
+  margin: 25px auto;
+  text-align: center;
+}
+
 #input {
   display: block;
+  margin: 0 auto;
   margin-top: 20px;
   border: none;
   font-size: 25px;
@@ -89,13 +95,12 @@ body#app {
   padding: 10px;
 }
 
-#container {
-  margin: 25px auto;
-  width: 800px;
+#appCanvas {
 }
 
-#appCanvas {
-  display: block;
+#head {
+  display: inline-block;
+  text-align: left;
 }
 
 h1 {
