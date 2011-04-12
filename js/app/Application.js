@@ -19,7 +19,7 @@ Application = function(canvas, input) {
 
   $(input)
     .width(this._dim)
-    .val('http://thinkpixellab.com')
+    .val('Type your message here...')
     .bind('keyup', goog.bind(this._create, this));
 
   $(this.canvas)
