@@ -2,14 +2,35 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+  <link href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold,500" rel="stylesheet" type="text/css"/>
   <link href="styles/style.css?v=2" rel="stylesheet"/>
   <script src="libs/jquery-1.5.2.min.js"></script>
   <script src="js/loader.js"></script>
 <script src="js/compiled.js"></script></head>
 <body id="app">
   <div id="container">
+    <div id="head-wrapper">
+    <div id="head">
+      <h2 class="pretitle">HTML5 + &lt;canvas/&gt; + QR - sleep =</h2>
+      <h1>think<span class="black">qr</span></h1>
+    </div>
+    </div>
     <canvas height="480" id="appCanvas" width="640"></canvas>
-    <input id="input" style="display: block; margin: 0 auto; border: 1px solid; margin-top: 5px;" type="text"/>
+    <input id="input" type="text"/>
+    <h2 class="pl">Brought to you by <a href="http://thinkpixellab.com">Pixel Lab</a>, makers of fine pixels</h2>
   </div>
-</body>
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-22691951-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+  </body>
 </html>
