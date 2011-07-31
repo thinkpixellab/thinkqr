@@ -4,6 +4,3 @@
 [submodule "deps/easel"]
 	path = deps/easel
 	url = git://github.com/thinkpixellab/EaselJS.git
-[submodule "tools"]
-	path = tools
-	url = git://github.com/thinkpixellab/google-closure-tools.git

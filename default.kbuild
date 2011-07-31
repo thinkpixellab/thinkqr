@@ -1,0 +1,7 @@
+base_path: deps/closure-library/closure
+js_paths:
+  - js/app
+  - js/qr
+  - deps/easel/src
+deps_path: js/deps.js
+compile_path: js/compiled.js
