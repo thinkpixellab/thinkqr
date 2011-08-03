@@ -6,7 +6,13 @@ From your friends at [Pixel Lab](http://thinkpixellab.com)
 
 Built with [ktools](https://github.com/kevmoo/ktools)
 
-The MIT License
+# Original License #
+
+    QRCode for ActionScript
+    version 1.0.1
+    Copyright (C) Kazuhiko Arase all rights reserved.
+
+# The MIT License #
 
 Copyright (c) 2010-2011 Pixel Lab
 
