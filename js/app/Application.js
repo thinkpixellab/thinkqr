@@ -1,7 +1,7 @@
 goog.provide('Application');
 
-goog.require('QRCode');
-goog.require('QRErrorCorrectLevel');
+goog.require('QR.Code');
+goog.require('QR.ErrorCorrectLevel');
 goog.require('Square');
 goog.require('Ticker');
 
@@ -54,7 +54,7 @@ Application.prototype._create = function() {
   value = $(this.input).val();
   if (this.value !== value) {
     this.value = value;
-    qr = new QRCode(this.typeNumber, QRErrorCorrectLevel.Q);
+    qr = new QR.Code(this.typeNumber, QR.ErrorCorrectLevel.Q);
     qr.addData(value);
     qr.make();
     this._updateSquareTargets(qr);

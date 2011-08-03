@@ -1,21 +1,15 @@
-//---------------------------------------------------------------------
-// QRCode for ActionScript
-// version 1.0.1
-// Copyright (C) Kazuhiko Arase all rights reserved.
-//---------------------------------------------------------------------
-
-goog.provide('QR8bitByte');
+goog.provide('QR.EightBitByte');
 
 /**
  * @constructor
  * @param {string} data
  */
-QR8bitByte = function(data) {
-  this.mode = QRMode.MODE_8BIT_BYTE;
+QR.EightBitByte = function(data) {
+  this.mode = QR.Mode.MODE_8BIT_BYTE;
   this.data = data;
 };
 
-QR8bitByte.prototype = {
+QR.EightBitByte.prototype = {
 
   getLength: function(buffer) {
     return this.data.length;

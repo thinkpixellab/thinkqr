@@ -1,17 +1,17 @@
-goog.provide('QRCode');
+goog.provide('QR.Code');
 
-goog.require('QR8bitByte');
-goog.require('QRMode');
-goog.require('QRUtil');
-goog.require('QRRSBlock');
-goog.require('QRBitBuffer');
+goog.require('QR.EightBitByte');
+goog.require('QR.Mode');
+goog.require('QR.Util');
+goog.require('QR.RSBlock');
+goog.require('QR.BitBuffer');
 
 /**
  * @constructor
  * @param {number} typeNumber
- * @param {QRErrorCorrectLevel} errorCorrectLevel
+ * @param {QR.ErrorCorrectLevel} errorCorrectLevel
  */
-QRCode = function(typeNumber, errorCorrectLevel) {
+QR.Code = function(typeNumber, errorCorrectLevel) {
   this.typeNumber = typeNumber;
   this.errorCorrectLevel = errorCorrectLevel;
   this.moduleCount = this.typeNumber * 4 + 17;
@@ -28,13 +28,13 @@ QRCode = function(typeNumber, errorCorrectLevel) {
   this.dataList = [];
 };
 
-QRCode.prototype = {
+QR.Code.prototype = {
 
   /**
    * @param {string} data
    */
   addData: function(data) {
-    var newData = new QR8bitByte(data);
+    var newData = new QR.EightBitByte(data);
     this.dataList.push(newData);
     this.dataCache = null;
   },
@@ -72,7 +72,7 @@ QRCode.prototype = {
     }
 
     if (this.dataCache == null) {
-      this.dataCache = QRCode.createData(this.typeNumber, this.errorCorrectLevel, this.dataList);
+      this.dataCache = QR.Code.createData(this.typeNumber, this.errorCorrectLevel, this.dataList);
     }
 
     this.mapData(this.dataCache, maskPattern);
@@ -109,7 +109,7 @@ QRCode.prototype = {
 
       this.makeImpl(true, i);
 
-      var lostPoint = QRUtil.getLostPoint(this);
+      var lostPoint = QR.Util.getLostPoint(this);
 
       if (i == 0 || minLostPoint > lostPoint) {
         minLostPoint = lostPoint;
@@ -139,7 +139,7 @@ QRCode.prototype = {
 
   setupPositionAdjustPattern: function() {
 
-    var pos = QRUtil.getPatternPosition(this.typeNumber);
+    var pos = QR.Util.getPatternPosition(this.typeNumber);
 
     for (var i = 0; i < pos.length; i++) {
 
@@ -169,7 +169,7 @@ QRCode.prototype = {
 
   setupTypeNumber: function(test) {
 
-    var bits = QRUtil.getBCHTypeNumber(this.typeNumber);
+    var bits = QR.Util.getBCHTypeNumber(this.typeNumber);
 
     var i, mod;
     for (i = 0; i < 18; i++) {
@@ -186,7 +186,7 @@ QRCode.prototype = {
   setupTypeInfo: function(test, maskPattern) {
 
     var data = (this.errorCorrectLevel << 3) | maskPattern;
-    var bits = QRUtil.getBCHTypeInfo(data);
+    var bits = QR.Util.getBCHTypeInfo(data);
 
     var i, mod;
 
@@ -246,7 +246,7 @@ QRCode.prototype = {
               dark = (((data[byteIndex] >>> bitIndex) & 1) == 1);
             }
 
-            var mask = QRUtil.getMask(maskPattern, row, col - c);
+            var mask = QR.Util.getMask(maskPattern, row, col - c);
 
             if (mask) {
               dark = !dark;
@@ -276,20 +276,20 @@ QRCode.prototype = {
 
 };
 
-QRCode.PAD0 = 0xEC;
-QRCode.PAD1 = 0x11;
+QR.Code.PAD0 = 0xEC;
+QR.Code.PAD1 = 0x11;
 
-QRCode.createData = function(typeNumber, errorCorrectLevel, dataList) {
+QR.Code.createData = function(typeNumber, errorCorrectLevel, dataList) {
 
-  var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, errorCorrectLevel);
+  var rsBlocks = QR.RSBlock.getRSBlocks(typeNumber, errorCorrectLevel);
 
-  var buffer = new QRBitBuffer();
+  var buffer = new QR.BitBuffer();
   var i;
 
   for (i = 0; i < dataList.length; i++) {
     var data = dataList[i];
     buffer.put(data.mode, 4);
-    buffer.put(data.getLength(), QRUtil.getLengthInBits(data.mode, typeNumber));
+    buffer.put(data.getLength(), QR.Util.getLengthInBits(data.mode, typeNumber));
     data.write(buffer);
   }
 
@@ -319,18 +319,18 @@ QRCode.createData = function(typeNumber, errorCorrectLevel, dataList) {
     if (buffer.getLengthInBits() >= totalDataCount * 8) {
       break;
     }
-    buffer.put(QRCode.PAD0, 8);
+    buffer.put(QR.Code.PAD0, 8);
 
     if (buffer.getLengthInBits() >= totalDataCount * 8) {
       break;
     }
-    buffer.put(QRCode.PAD1, 8);
+    buffer.put(QR.Code.PAD1, 8);
   }
 
-  return QRCode.createBytes(buffer, rsBlocks);
+  return QR.Code.createBytes(buffer, rsBlocks);
 };
 
-QRCode.createBytes = function(buffer, rsBlocks) {
+QR.Code.createBytes = function(buffer, rsBlocks) {
 
   var offset = 0;
 
@@ -363,8 +363,8 @@ QRCode.createBytes = function(buffer, rsBlocks) {
     }
     offset += dcCount;
 
-    var rsPoly = QRUtil.getErrorCorrectPolynomial(ecCount);
-    var rawPoly = new QRPolynomial(dcdata[r], rsPoly.getLength() - 1);
+    var rsPoly = QR.Util.getErrorCorrectPolynomial(ecCount);
+    var rawPoly = new QR.Polynomial(dcdata[r], rsPoly.getLength() - 1);
 
     var modPoly = rawPoly.mod(rsPoly);
     ecdata[r] = {

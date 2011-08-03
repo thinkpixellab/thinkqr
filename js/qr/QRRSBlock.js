@@ -1,14 +1,14 @@
-goog.provide('QRRSBlock');
+goog.provide('QR.RSBlock');
 
 /**
  @constructor
  */
-QRRSBlock = function(totalCount, dataCount) {
+QR.RSBlock = function(totalCount, dataCount) {
   this.totalCount = totalCount;
   this.dataCount = dataCount;
 };
 
-QRRSBlock.RS_BLOCK_TABLE = [
+QR.RSBlock.RS_BLOCK_TABLE = [
 
 // L
 // M
@@ -76,9 +76,9 @@ QRRSBlock.RS_BLOCK_TABLE = [
 
 ];
 
-QRRSBlock.getRSBlocks = function(typeNumber, errorCorrectLevel) {
+QR.RSBlock.getRSBlocks = function(typeNumber, errorCorrectLevel) {
 
-  var rsBlock = QRRSBlock.getRsBlockTable(typeNumber, errorCorrectLevel);
+  var rsBlock = QR.RSBlock.getRsBlockTable(typeNumber, errorCorrectLevel);
 
   if (rsBlock == undefined) {
     throw new Error("bad rs block @ typeNumber:" + typeNumber + "/errorCorrectLevel:" + errorCorrectLevel);
@@ -97,24 +97,24 @@ QRRSBlock.getRSBlocks = function(typeNumber, errorCorrectLevel) {
     var dataCount = rsBlock[i * 3 + 2];
 
     for (var j = 0; j < count; j++) {
-      list[list.length++] = new QRRSBlock(totalCount, dataCount);
+      list[list.length++] = new QR.RSBlock(totalCount, dataCount);
     }
   }
 
   return list;
 };
 
-QRRSBlock.getRsBlockTable = function(typeNumber, errorCorrectLevel) {
+QR.RSBlock.getRsBlockTable = function(typeNumber, errorCorrectLevel) {
 
   switch (errorCorrectLevel) {
-  case QRErrorCorrectLevel.L:
-    return QRRSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 0];
-  case QRErrorCorrectLevel.M:
-    return QRRSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 1];
-  case QRErrorCorrectLevel.Q:
-    return QRRSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 2];
-  case QRErrorCorrectLevel.H:
-    return QRRSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 3];
+  case QR.ErrorCorrectLevel.L:
+    return QR.RSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 0];
+  case QR.ErrorCorrectLevel.M:
+    return QR.RSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 1];
+  case QR.ErrorCorrectLevel.Q:
+    return QR.RSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 2];
+  case QR.ErrorCorrectLevel.H:
+    return QR.RSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 3];
   default:
     return undefined;
   }

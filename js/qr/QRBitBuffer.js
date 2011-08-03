@@ -1,16 +1,16 @@
-goog.provide('QRBitBuffer');
+goog.provide('QR.BitBuffer');
 
 /**
  @constructor
  */
-QRBitBuffer = function() {
+QR.BitBuffer = function() {
   this.buffer = {
     length: 0
   };
   this.length = 0;
 };
 
-QRBitBuffer.prototype = {
+QR.BitBuffer.prototype = {
 
   get: function(index) {
     var bufIndex = Math.floor(index / 8);

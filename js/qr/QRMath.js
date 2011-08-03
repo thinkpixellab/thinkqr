@@ -1,6 +1,6 @@
-goog.provide('QRMath');
+goog.provide('QR.Math');
 
-var QRMath = {
+QR.Math = {
 
   glog: function(n) {
 
@@ -8,7 +8,7 @@ var QRMath = {
       throw new Error("glog(" + n + ")");
     }
 
-    return QRMath.LOG_TABLE[n];
+    return QR.Math.LOG_TABLE[n];
   },
 
   gexp: function(n) {
@@ -21,7 +21,7 @@ var QRMath = {
       n -= 255;
     }
 
-    return QRMath.EXP_TABLE[n];
+    return QR.Math.EXP_TABLE[n];
   },
 
   EXP_TABLE: {
@@ -34,13 +34,15 @@ var QRMath = {
 
 };
 
-var i;
-for (i = 0; i < 8; i++) {
-  QRMath.EXP_TABLE[i] = 1 << i;
-}
-for (i = 8; i < 256; i++) {
-  QRMath.EXP_TABLE[i] = QRMath.EXP_TABLE[i - 4] ^ QRMath.EXP_TABLE[i - 5] ^ QRMath.EXP_TABLE[i - 6] ^ QRMath.EXP_TABLE[i - 8];
-}
-for (i = 0; i < 255; i++) {
-  QRMath.LOG_TABLE[QRMath.EXP_TABLE[i]] = i;
-}
+(function(){
+  var i;
+  for (i = 0; i < 8; i++) {
+    QR.Math.EXP_TABLE[i] = 1 << i;
+  }
+  for (i = 8; i < 256; i++) {
+    QR.Math.EXP_TABLE[i] = QR.Math.EXP_TABLE[i - 4] ^ QR.Math.EXP_TABLE[i - 5] ^ QR.Math.EXP_TABLE[i - 6] ^ QR.Math.EXP_TABLE[i - 8];
+  }
+  for (i = 0; i < 255; i++) {
+    QR.Math.LOG_TABLE[QR.Math.EXP_TABLE[i]] = i;
+  }
+})();
