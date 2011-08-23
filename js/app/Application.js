@@ -2,8 +2,8 @@ goog.provide('Application');
 
 goog.require('QR.Code');
 goog.require('QR.ErrorCorrectLevel');
+goog.require('pl.ex');
 goog.require('Square');
-goog.require('Ticker');
 
 /**
  @constructor
@@ -34,7 +34,7 @@ Application = function(canvas, input) {
   this.context.setTransform(1, 0, 0, 1, this.scale * Application.PADDING, this.scale * Application.PADDING);
   this._squares = [];
   this._create();
-  Ticker.addListener(this);
+  this._tick();
 };
 
 Application.prototype._mouseOut = function(args) {
@@ -95,7 +95,7 @@ Application.prototype._updateSquareTargets = function(qr) {
   this._initial = false;
 };
 
-Application.prototype.tick = function() {
+Application.prototype._tick = function() {
   var i, s;
   this.context.fillStyle = 'white';
   this.context.fillRect(-Application.PADDING * this.scale, -Application.PADDING * this.scale, this._dim, this._dim);
@@ -106,6 +106,7 @@ Application.prototype.tick = function() {
     this._updateSquare(s);
     i++;
   }
+  pl.ex.requestAnimationFrame(goog.bind(this._tick, this));
 };
 
 Application.prototype._updateSquare = function(s) {

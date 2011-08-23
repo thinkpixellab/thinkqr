@@ -1,11 +1,11 @@
 inputs:
   - js/app/Application.js
-base_path: deps/closure-library/closure
+base_path: js/closure/closure
 js_paths:
   - js/app
   - js/qr
-  - deps/easel/src
-  - deps/closure-library/closure
+  - js/pl/src
+  - js/closure/closure
 deps_path: js/deps.js
 compile_path: js/compiled.js
 externs:

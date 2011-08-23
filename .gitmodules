@@ -1,6 +1,6 @@
-[submodule "deps/closure-library"]
-	path = deps/closure-library
+[submodule "js/closure"]
+	path = js/closure
 	url = git://github.com/jarib/google-closure-library.git
-[submodule "deps/easel"]
-	path = deps/easel
-	url = git://github.com/thinkpixellab/EaselJS.git
+[submodule "js/pl"]
+	path = js/pl
+	url = git://github.com/thinkpixellab/pl.git
