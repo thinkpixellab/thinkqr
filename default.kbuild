@@ -1,5 +1,5 @@
 inputs:
-  - js/app/Application.js
+  - js/app/application.js
 base_path: js/closure/closure
 js_paths:
   - js/app

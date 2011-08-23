@@ -1,25 +1,21 @@
-goog.provide('Square');
+goog.provide('app.Square');
 
 goog.require('goog.math.Vec2');
 goog.require('goog.math.Coordinate');
 
 /**
  @constructor
+ @param {number=} opt_x 
+ @param {number=} opt_y 
  */
-Square = function(x, y) {
-  if (x == null) {
-    x = 0;
-  }
-  if (y == null) {
-    y = 0;
-  }
-  this.current = new goog.math.Coordinate(x, y);
+app.Square = function(opt_x, opt_y) {
+  this.current = new goog.math.Coordinate(opt_x || 0, opt_y || 0);
   this.target = new goog.math.Coordinate();
   this.velocity = new goog.math.Vec2(0, 0);
   this._rnd = Math.random() * 0.5;
 };
 
-Square.prototype.update = function(mouse) {
+app.Square.prototype.update = function(mouse) {
   var force, mag, push;
   force = goog.math.Vec2.difference(this.target, this.current);
   if (mouse) {
@@ -29,15 +25,15 @@ Square.prototype.update = function(mouse) {
     push.normalize().scale(mag);
     force.add(push);
   }
-  this.velocity.scale(1 - Square.DRAG);
-  this.velocity.add(force.scale((1 + this._rnd) / Square.INERTIA));
-  if (this.velocity.magnitude() > Square.TV) {
-    this.velocity.normalize().scale(Square.TV);
+  this.velocity.scale(1 - app.Square.DRAG);
+  this.velocity.add(force.scale((1 + this._rnd) / app.Square.INERTIA));
+  if (this.velocity.magnitude() > app.Square.TV) {
+    this.velocity.normalize().scale(app.Square.TV);
   }
   this.current.x += this.velocity.x;
   this.current.y += this.velocity.y;
 };
 
-Square.INERTIA = 200;
-Square.DRAG = 0.08;
-Square.TV = 20;
+app.Square.INERTIA = 200;
+app.Square.DRAG = 0.08;
+app.Square.TV = 20;
