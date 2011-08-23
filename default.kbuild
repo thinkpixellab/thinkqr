@@ -3,7 +3,6 @@ inputs:
 base_path: js/closure/closure
 js_paths:
   - js/app
-  - js/qr
   - js/pl/src
   - js/closure/closure
 deps_path: js/deps.js
