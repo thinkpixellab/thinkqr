@@ -9,3 +9,7 @@ deps_path: js/deps.js
 compile_path: js/compiled.js
 externs:
   - js/externs/jquery-1.6.js
+fix_paths:
+  - js/app
+  - js/pl/src/
+  - js/loader.js

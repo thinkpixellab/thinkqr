@@ -1,12 +1,12 @@
 goog.provide('app.Square');
 
-goog.require('goog.math.Vec2');
 goog.require('goog.math.Coordinate');
+goog.require('goog.math.Vec2');
 
 /**
  @constructor
- @param {number=} opt_x 
- @param {number=} opt_y 
+ @param {number=} opt_x
+ @param {number=} opt_y
  */
 app.Square = function(opt_x, opt_y) {
   this.current = new goog.math.Coordinate(opt_x || 0, opt_y || 0);

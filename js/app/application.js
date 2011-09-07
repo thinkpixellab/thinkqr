@@ -1,9 +1,9 @@
 goog.provide('app.Application');
 
+goog.require('app.Square');
+goog.require('pl.ex');
 goog.require('qr.Code');
 goog.require('qr.ErrorCorrectLevel');
-goog.require('pl.ex');
-goog.require('app.Square');
 
 /**
  @constructor
