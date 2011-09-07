@@ -1,12 +1,13 @@
 goog.provide('app.Application');
 
-goog.require('QR.Code');
-goog.require('QR.ErrorCorrectLevel');
+goog.require('qr.Code');
+goog.require('qr.ErrorCorrectLevel');
 goog.require('pl.ex');
 goog.require('app.Square');
 
 /**
  @constructor
+ @export
  @param {!HTMLCanvasElement} canvas
  */
 app.Application = function(canvas, input) {
@@ -41,14 +42,14 @@ app.Application.prototype._mouseMove = function(args) {
 };
 
 app.Application.prototype._create = function() {
-  var qr, value;
+  var code, value;
   value = /** @type {string} */ ($(this.input).val());
   if (this.value !== value) {
     this.value = value;
-    qr = new QR.Code(this.typeNumber, QR.ErrorCorrectLevel.Q);
-    qr.addData(value);
-    qr.make();
-    this._updateSquareTargets(qr);
+    code = new qr.Code(this.typeNumber, qr.ErrorCorrectLevel.Q);
+    code.addData(value);
+    code.make();
+    this._updateSquareTargets(code);
   }
 };
 
@@ -106,5 +107,3 @@ app.Application.prototype._updateSquare = function(s) {
 };
 
 app.Application.PADDING = 10;
-
-goog.exportSymbol('app.Application', app.Application);
