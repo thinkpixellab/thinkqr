@@ -6,8 +6,8 @@ goog.addDependency("../../../pl/src/debugDiv.js", ['pl.DebugDiv'], ['goog.assert
 goog.addDependency("../../../pl/src/ex.js", ['pl.ex'], ['goog.array', 'goog.math.Size', 'goog.string', 'goog.style']);
 goog.addDependency("../../../pl/src/fpsLogger.js", ['pl.FpsLogger'], []);
 goog.addDependency("../../../pl/src/gfx.js", ['pl.gfx'], ['goog.graphics.AffineTransform', 'goog.math.Size']);
+goog.addDependency("../../../pl/src/images.js", ['pl.images'], ['goog.asserts', 'goog.net.EventType', 'goog.net.ImageLoader', 'goog.object']);
 goog.addDependency("../../../pl/src/keyBinding.js", ['pl.KeyBinding', 'pl.KeyBindingEvent'], ['goog.events.Event', 'goog.events.EventTarget', 'goog.ui.KeyboardShortcutHandler', 'goog.ui.KeyboardShortcutHandler.EventType']);
-goog.addDependency("../../../pl/src/preload.js", ['pl.Preload'], ['goog.object']);
 goog.addDependency("../../../pl/src/property.js", ['pl.Property'], ['goog.array', 'goog.math.Coordinate', 'goog.math.Size']);
 goog.addDependency("../../../pl/src/soundEffect.js", ['pl.SoundEffect'], []);
 goog.addDependency("../../../pl/src/stats.js", ['pl.Stats'], ['goog.dom']);
@@ -80,7 +80,7 @@ goog.addDependency("../../../pl/src/box2d/dynamics/joints/b2RevoluteJoint.js", [
 goog.addDependency("../../../pl/src/box2d/dynamics/joints/b2RevoluteJointDef.js", ['box2d.RevoluteJointDef'], ['box2d.Joint', 'box2d.JointDef', 'box2d.Vec2']);
 goog.addDependency("../../../pl/src/qr/qr8BitByte.js", ['qr.EightBitByte'], []);
 goog.addDependency("../../../pl/src/qr/qrBitBuffer.js", ['qr.BitBuffer'], []);
-goog.addDependency("../../../pl/src/qr/qrcode.js", ['qr.Code'], ['qr.BitBuffer', 'qr.EightBitByte', 'qr.Mode', 'qr.RSBlock', 'qr.Util']);
+goog.addDependency("../../../pl/src/qr/qrCode.js", ['qr.Code'], ['qr.BitBuffer', 'qr.EightBitByte', 'qr.Mode', 'qr.RSBlock', 'qr.Util']);
 goog.addDependency("../../../pl/src/qr/qrEnums.js", ['qr.ErrorCorrectLevel', 'qr.MaskPattern', 'qr.Mode'], []);
 goog.addDependency("../../../pl/src/qr/qrMath.js", ['qr.Math'], []);
 goog.addDependency("../../../pl/src/qr/qrPolynomial.js", ['qr.Polynomial'], []);
