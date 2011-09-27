@@ -1,11 +1,10 @@
 # kbuild file - https://github.com/kevmoo/kbuild
+closure_path: js/closure
 inputs:
   - js/app/application.js
-base_path: js/closure/closure
 js_paths:
   - js/app
   - js/pl/src
-  - js/closure/closure
 deps_path: js/deps.js
 compile_path: js/compiled.js
 externs:
