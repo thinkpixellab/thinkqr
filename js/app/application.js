@@ -1,6 +1,7 @@
 goog.provide('app.Application');
 
 goog.require('app.Square');
+goog.require('pl.Stats');
 goog.require('pl.ex');
 goog.require('qr.Code');
 goog.require('qr.ErrorCorrectLevel');
@@ -11,6 +12,11 @@ goog.require('qr.ErrorCorrectLevel');
  @param {!HTMLCanvasElement} canvas
  */
 app.Application = function(canvas, input) {
+  if (COMPILED) {
+    pl.Stats.addGoogleAnalytics('UA-22691951-1');
+    pl.Stats.addStatCounter(6793701, '6b3ec070');
+  }
+
   this.canvas = canvas;
   this.input = input;
   this.typeNumber = 10;
